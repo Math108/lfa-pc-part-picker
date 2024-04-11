@@ -179,7 +179,7 @@ def choosePowerSupply(w):
 
     print()
 
-def afd(M, w):
+def testAfd(M, w):
     δ, q, F = M
 
     for s in w:
@@ -191,7 +191,7 @@ def afd(M, w):
 
     return q in F
 
-def testAfd(w):
+def afd(w):
     δ = {
         ('q0', 'Montech AIR X ARGB'): 'q1',
         ('q0', 'Cooler Master Cosmos C700M RGB'): 'q1',
@@ -300,7 +300,7 @@ def testAfd(w):
 
     M = δ, 'q0', ['q8', 'q34']
 
-    return afd(M, w)
+    return testAfd(M, w)
 
 def pcBuilding():
     word = []
@@ -325,7 +325,7 @@ def main():
         print(part)
     print()
 
-    if (testAfd(word)):
+    if (afd(word)):
         print("Parabéns! Este computador é funcional!")
     else:
         print("Este computador possui incompatiblidades, por favor tente novamente.")
