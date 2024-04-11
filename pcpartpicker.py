@@ -75,7 +75,7 @@ def chooseCooler(w):
         w.append(coolers[choice - 1])
 
 def chooseRAM(w):
-    rams = ["Corsair Vengeance DDR4 3200MHz", 
+    rams = ["2x Corsair Vengeance DDR4 3200MHz", 
             "dois", 
             "tres"]
 
@@ -117,24 +117,31 @@ def chooseGPU(w):
 
 def chooseMemory(w):
     mems = ["SSD Lexar NM610 500GB NVME M.2", 
-            "dois", 
-            "tres"]
+            "HD Seagate SkyHawk Surveillance 3TB"]
 
     print("Vamos escolher o armazenamento!")
     for idx, mem in enumerate(mems):
         print("{}) {}".format(idx + 1, mem))
 
-    choice = input("Digite o número do armazenamento, digite 0 caso não queira nenhum: ")
+    choice = input("Digite o número do armazenamento desejado, digite 0 caso não queira nenhum: ")
     choice = int(choice)
 
-    while choice != 0:
+    while choice != 0 and len(mems) > 0:
         while not(choice >= 0 and choice <= len(mems)):
             choice = input("Escolha inválida, por favor digite o número do armazenamento desejado: ")
             choice = int(choice)
 
         if choice != 0:
-            w.append(mems[choice - 1])
-            choice = input("Deseja adicionar mais armazenamento ? Se sim, digite o número do armazenamento desejado, se não, digite 0: ")
+            qtd = input("Quantas da memória selecionada deseja adicionar?: ")
+            qtd = int(qtd)
+            for i in range (qtd):
+                w.append(mems[choice - 1])
+            if qtd > 0:
+                del mems[choice - 1]
+            for idx, mem in enumerate(mems):
+                print("{}) {}".format(idx + 1, mem))
+            if len(mems) > 0:
+                choice = input("Deseja adicionar mais armazenamento ? Se sim, digite o número do armazenamento desejado, se não, digite 0: ")
             choice = int(choice)
 
 def choosePowerSupply(w):
@@ -160,7 +167,11 @@ def afd(M, w):
     δ, q, F = M
 
     for s in w:
-        q = δ[(q, s)]
+        if (q, s) in δ:
+            q = δ[(q, s)]
+        else:
+            print(q, s)
+            return False
 
     return q in F
 
@@ -170,10 +181,40 @@ def testAfd(w):
         ('q1', 'MSI B550M PRO-VDH WIFI'): 'q2',
         ('q2', 'AMD Ryzen 5 5600'): 'q3',
         ('q3', 'DeepCool Gammax 400 V2'): 'q4',
-        ('q4', 'Corsair Vengeance DDR4 3200MHz'): 'q5',
+        ('q3', '2x Corsair Vengeance DDR4 3200MHz'): 'q5',
+        ('q4', '2x Corsair Vengeance DDR4 3200MHz'): 'q5',
         ('q5', 'Gigabyte GeForce RTX 3070 Ti'): 'q6',
+        ('q5', '2x Corsair Vengeance DDR4 3200MHz'): 'q9',
         ('q6', 'SSD Lexar NM610 500GB NVME M.2'): 'q7',
-        ('q7', 'Super Flower LEGION GX PRO 750W'): 'q8' }
+        ('q6', 'HD Seagate SkyHawk Surveillance 3TB'): 'q11',
+        ('q7', 'Super Flower LEGION GX PRO 750W'): 'q8', 
+        ('q7', 'SSD Lexar NM610 500GB NVME M.2'): 'q10',
+        ('q7', 'HD Seagate SkyHawk Surveillance 3TB'): 'q17',
+        ('q9', 'Gigabyte GeForce RTX 3070 Ti'): 'q6',
+        ('q10', 'HD Seagate SkyHawk Surveillance 3TB'): 'q17',
+        ('q10', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q11', 'SSD Lexar NM610 500 GB NVME M.2'): 'q14',
+        ('q11', 'HD Seagate SkyHawk Surveillance 3TB'): 'q12',
+        ('q11', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q12', 'HD Seagate SkyHawk Surveillance 3TB'): 'q13',
+        ('q12', 'SSD Lexar NM610 500 GB NVME M.2'): 'q14',
+        ('q12', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q13', 'HD Seagate SkyHawk Surveillance 3TB'): 'q16',
+        ('q13', 'SSD Lexar NM610 500 GB NVME M.2'): 'q14',
+        ('q13', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q14', 'SSD Lexar NM610 500 GB NVME M.2'): 'q15',
+        ('q14', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q15', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q16', 'SSD Lexar NM610 500 GB NVME M.2'): 'q14',
+        ('q16', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q17', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q17', 'HD Seagate SkyHawk Surveillance 3TB'): 'q18',
+        ('q18', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q18', 'HD Seagate SkyHawk Surveillance 3TB'): 'q20',
+        ('q20', 'HD Seagate SkyHawk Surveillance 3TB'): 'q21',
+        ('q20', 'Super Flower LEGION GX PRO 750W'): 'q8',
+        ('q21', 'Super Flower LEGION GX PRO 750W'): 'q8'
+        }
 
     M = δ, 'q0', ['q8']
 
