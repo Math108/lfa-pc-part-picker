@@ -186,10 +186,9 @@ def testAfd(M, w):
         if (q, s) in δ:
             q = δ[(q, s)]
         else:
-            print(q, s)
-            return False
+            return False, s
 
-    return q in F
+    return q in F, None
 
 def afd(w):
     δ = {
@@ -325,10 +324,12 @@ def main():
         print(part)
     print()
 
-    if (afd(word)):
+    isFunctional, incomp = afd(word)
+    if (isFunctional):
         print("Parabéns! Este computador é funcional!")
     else:
         print("Este computador possui incompatiblidades, por favor tente novamente.")
+        print("Problema encontrado na peça: {}".format(incomp))
 
 if __name__ == "__main__":
     main()
