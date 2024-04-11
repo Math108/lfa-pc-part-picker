@@ -1,5 +1,7 @@
 def chooseCase(w):
-    cases = ["Um", "dois", "tres"]
+    cases = ["Montech AIR X ARGB",
+             "dois",
+             "tres"]
 
     print("Vamos escolher um gabinete!")
     for idx, case in enumerate(cases):
@@ -16,7 +18,9 @@ def chooseCase(w):
         w.append(cases[choice - 1])
 
 def chooseMotherboard(w):
-    mbs = ["Um", "dois", "tres"]
+    mbs = ["MSI B550M PRO-VDH WIFI", 
+           "dois", 
+           "tres"]
 
     print("Vamos escolher uma placa-mãe!")
     for idx, mb in enumerate(mbs):
@@ -33,7 +37,9 @@ def chooseMotherboard(w):
         w.append(mbs[choice - 1])
 
 def chooseCPU(w):
-    cpus = ["Um", "dois", "tres"]
+    cpus = ["AMD Ryzen 5 5600", 
+            "dois", 
+            "tres"]
 
     print("Vamos escolher um processador!")
     for idx, cpu in enumerate(cpus):
@@ -50,7 +56,9 @@ def chooseCPU(w):
         w.append(cpus[choice - 1])
 
 def chooseCooler(w):
-    coolers = ["Um", "dois", "tres"]
+    coolers = ["DeepCool Gammax 400 V2", 
+               "dois", 
+               "tres"]
 
     print("Vamos escolher um cooler!")
     for idx, cooler in enumerate(coolers):
@@ -67,7 +75,9 @@ def chooseCooler(w):
         w.append(coolers[choice - 1])
 
 def chooseRAM(w):
-    rams = ["Um", "dois", "tres"]
+    rams = ["Corsair Vengeance DDR4 3200MHz", 
+            "dois", 
+            "tres"]
 
     print("Vamos escolher a RAM!")
     for idx, ram in enumerate(rams):
@@ -87,7 +97,9 @@ def chooseRAM(w):
             choice = int(choice)
 
 def chooseGPU(w):
-    gpus = ["Um", "dois", "tres"]
+    gpus = ["Gigabyte GeForce RTX 3070 Ti", 
+            "dois", 
+            "tres"]
 
     print("Vamos escolher uma placa de vídeo!")
     for idx, gpu in enumerate(gpus):
@@ -104,7 +116,9 @@ def chooseGPU(w):
         w.append(gpus[choice - 1])
 
 def chooseMemory(w):
-    mems = ["Um", "dois", "tres"]
+    mems = ["SSD Lexar NM610 500GB NVME M.2", 
+            "dois", 
+            "tres"]
 
     print("Vamos escolher o armazenamento!")
     for idx, mem in enumerate(mems):
@@ -124,7 +138,9 @@ def chooseMemory(w):
             choice = int(choice)
 
 def choosePowerSupply(w):
-    pss = ["Um", "dois", "tres"]
+    pss = ["Super Flower LEGION GX PRO 750W", 
+           "dois", 
+           "tres"]
 
     print("Vamos escolher uma fonte!")
     for idx, ps in enumerate(pss):
@@ -140,14 +156,6 @@ def choosePowerSupply(w):
     if choice != 0:
         w.append(pss[choice - 1])
 
-def testAfd(w):
-    δ = {
-    }
-
-    M = δ, 'q1', ['q2']
-
-    return afd(M, w)
-
 def afd(M, w):
     δ, q, F = M
 
@@ -156,6 +164,20 @@ def afd(M, w):
 
     return q in F
 
+def testAfd(w):
+    δ = {
+        ('q0', 'Montech AIR X ARGB'): 'q1',
+        ('q1', 'MSI B550M PRO-VDH WIFI'): 'q2',
+        ('q2', 'AMD Ryzen 5 5600'): 'q3',
+        ('q3', 'DeepCool Gammax 400 V2'): 'q4',
+        ('q4', 'Corsair Vengeance DDR4 3200MHz'): 'q5',
+        ('q5', 'Gigabyte GeForce RTX 3070 Ti'): 'q6',
+        ('q6', 'SSD Lexar NM610 500GB NVME M.2'): 'q7',
+        ('q7', 'Super Flower LEGION GX PRO 750W'): 'q8' }
+
+    M = δ, 'q0', ['q8']
+
+    return afd(M, w)
 
 def main():
     word = []
@@ -171,7 +193,7 @@ def main():
 
     print(word)
 
-    if (testAfd):
+    if (testAfd(word)):
         print("Este computador é funcional!")
     else:
         print("Este computador possui incompatiblidades, por favor tente novamente.")
